@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
-<body>
 <header th:fragment="header(activeMenu)" class="site-header">
     <div class="container nav-container">
         <a class="brand" th:href="@{/}">Portfolio Web</a>
@@ -23,5 +22,12 @@
         </nav>
     </div>
 </header>
-</body>
+
+<th:block th:fragment="styles">
+    <link rel="stylesheet" th:href="@{/css/header.css}">
+</th:block>
+
+<th:block th:fragment="scripts">
+    <script th:src="@{/js/header.js}" defer></script>
+</th:block>
 </html>

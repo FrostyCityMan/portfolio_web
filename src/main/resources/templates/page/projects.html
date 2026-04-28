@@ -11,27 +11,31 @@
     </section>
 
     <section class="section-block">
-        <div class="container card-grid">
-            <article class="info-card" th:each="project : ${projects}">
-                <p class="eyebrow" th:text="${project.category()}">프로젝트 구분</p>
-                <p class="meta" th:text="${project.period()}">기간</p>
-                <h2 th:text="${project.name()}">프로젝트명</h2>
-                <p th:text="${project.summary()}">개요</p>
-                <p><strong>담당 역할:</strong> <span th:text="${project.role()}">역할</span></p>
-                <div class="detail-section">
-                    <h3>주요 수행 업무</h3>
-                    <ul class="bullet-list compact-list">
-                        <li th:each="task : ${project.responsibilities()}" th:text="${task}">주요 업무</li>
-                    </ul>
+        <div class="container card-grid project-grid">
+            <article class="info-card project-card" th:each="project : ${projects}">
+                <div class="project-card-main">
+                    <p class="eyebrow" th:text="${project.category()}">프로젝트 구분</p>
+                    <p class="meta" th:text="${project.period()}">기간</p>
+                    <h2 th:text="${project.name()}">프로젝트명</h2>
+                    <p th:text="${project.summary()}">개요</p>
+                    <p><strong>담당 역할:</strong> <span th:text="${project.role()}">역할</span></p>
                 </div>
-                <div class="chip-list small">
-                    <span class="chip" th:each="tech : ${project.techStacks()}" th:text="${tech}">기술</span>
-                </div>
-                <div class="detail-section">
-                    <h3>핵심 경험</h3>
-                    <ul class="bullet-list compact-list">
-                        <li th:each="experience : ${project.keyExperiences()}" th:text="${experience}">핵심 경험</li>
-                    </ul>
+                <div class="project-card-details">
+                    <div class="detail-section">
+                        <h3>주요 수행 업무</h3>
+                        <ul class="bullet-list compact-list">
+                            <li th:each="task : ${project.responsibilities()}" th:text="${task}">주요 업무</li>
+                        </ul>
+                    </div>
+                    <div class="chip-list small">
+                        <span class="chip" th:each="tech : ${project.techStacks()}" th:text="${tech}">기술</span>
+                    </div>
+                    <div class="detail-section">
+                        <h3>핵심 경험</h3>
+                        <ul class="bullet-list compact-list">
+                            <li th:each="experience : ${project.keyExperiences()}" th:text="${experience}">핵심 경험</li>
+                        </ul>
+                    </div>
                 </div>
             </article>
         </div>

@@ -18,7 +18,7 @@ public class DummyProfileRepository implements ProfileRepository {
                 "Spring Boot 기반 엔터프라이즈 백엔드 개발과 AWS·Linux 기반 인프라 운영을 함께 수행해온 엔지니어입니다. 공공 및 기업 프로젝트에서 Java/Spring Boot, Oracle/PostgreSQL 기반 업무 시스템 개발, 인증 및 권한 구조 설계, API 문서화, Docker 및 GitLab 기반 운영 환경 구성 경험을 보유하고 있습니다.",
                 List.of("Java", "Spring Boot", "Oracle", "PostgreSQL", "AWS", "Docker", "Linux", "OAuth2/OIDC", "GitLab CI/CD", "Swagger / OpenAPI"),
                 "기능 구현에 머무르지 않고 인증, 권한, 배포, 운영 이슈 대응까지 함께 다루며 서비스 전체 구조를 안정적으로 운영하는 데 강점을 가진 엔지니어입니다.",
-                null,
+                "/image/profile.jpg",
                 "김도훈 프로필 사진",
                 List.of(
                         "폐쇄망 및 운영 제약 환경에서 서버 구성, Oracle 컨테이너 운영, 배포 자동화, 인증 연동, 운영 이슈 대응까지 수행하며 백엔드와 인프라를 통합적으로 다뤄왔습니다. 단순 기능 개발보다 실제로 안정적으로 운영되는 구조를 만드는 데 무게를 두고 일해왔습니다.",
@@ -66,8 +66,8 @@ public class DummyProfileRepository implements ProfileRepository {
                 new ContactInfoDto(
                         "010-9143-7173",
                         "valentine9143@gmail.com",
-                        "비공개",
-                        null,
+                        "https://github.com/FrostyCityMan",
+                        "https://github.com/FrostyCityMan",
                         "백엔드 개발과 인프라 운영을 함께 고민하는 포지션, 협업 제안, 프로젝트 문의를 언제든지 환영합니다."
                 )
         );

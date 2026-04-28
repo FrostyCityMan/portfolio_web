@@ -40,7 +40,15 @@
                     </div>
                     <div>
                         <dt>GitHub</dt>
-                        <dd th:text="${profileSummary.contactInfo().githubLabel()}">비공개</dd>
+                        <dd>
+                            <a th:if="${profileSummary.contactInfo().githubUrl() != null}"
+                               th:href="${profileSummary.contactInfo().githubUrl()}"
+                               th:text="${profileSummary.contactInfo().githubLabel()}"
+                               target="_blank"
+                               rel="noopener">https://github.com/FrostyCityMan</a>
+                            <span th:unless="${profileSummary.contactInfo().githubUrl() != null}"
+                                  th:text="${profileSummary.contactInfo().githubLabel()}">https://github.com/FrostyCityMan</span>
+                        </dd>
                     </div>
                 </dl>
             </div>
@@ -67,18 +75,22 @@
                 <p class="eyebrow">Featured Work</p>
                 <h2>주요 프로젝트</h2>
             </div>
-            <div class="card-grid">
-                <article class="info-card" th:each="project : ${featuredProjects}">
-                    <p class="eyebrow" th:text="${project.category()}">프로젝트 구분</p>
-                    <p class="meta" th:text="${project.period()}">기간</p>
-                    <h3 th:text="${project.name()}">프로젝트명</h3>
-                    <p th:text="${project.summary()}">개요</p>
-                    <p><strong>역할:</strong> <span th:text="${project.role()}">역할</span></p>
-                    <ul class="bullet-list compact-list">
-                        <li th:each="task, stat : ${project.responsibilities()}" th:if="${stat.index < 3}" th:text="${task}">주요 업무</li>
-                    </ul>
-                    <div class="chip-list small">
-                        <span class="chip" th:each="tech : ${project.techStacks()}" th:text="${tech}">Spring</span>
+            <div class="card-grid project-grid">
+                <article class="info-card project-card" th:each="project : ${featuredProjects}">
+                    <div class="project-card-main">
+                        <p class="eyebrow" th:text="${project.category()}">프로젝트 구분</p>
+                        <p class="meta" th:text="${project.period()}">기간</p>
+                        <h3 th:text="${project.name()}">프로젝트명</h3>
+                        <p th:text="${project.summary()}">개요</p>
+                    </div>
+                    <div class="project-card-details">
+                        <p><strong>역할:</strong> <span th:text="${project.role()}">역할</span></p>
+                        <ul class="bullet-list compact-list">
+                            <li th:each="task, stat : ${project.responsibilities()}" th:if="${stat.index < 3}" th:text="${task}">주요 업무</li>
+                        </ul>
+                        <div class="chip-list small">
+                            <span class="chip" th:each="tech : ${project.techStacks()}" th:text="${tech}">Spring</span>
+                        </div>
                     </div>
                 </article>
             </div>

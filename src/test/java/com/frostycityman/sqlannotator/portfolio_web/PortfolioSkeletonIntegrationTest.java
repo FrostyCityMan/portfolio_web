@@ -30,7 +30,7 @@ class PortfolioSkeletonIntegrationTest {
                 .andExpect(view().name("page/main"))
                 .andExpect(model().attributeExists("profileSummary"))
                 .andExpect(content().string(org.hamcrest.Matchers.containsString("김도훈")))
-                .andExpect(content().string(org.hamcrest.Matchers.containsString("프로필 사진을 넣을 공간")))
+                .andExpect(content().string(org.hamcrest.Matchers.containsString("/image/profile.jpg")))
                 .andExpect(content().string(org.hamcrest.Matchers.containsString("010-9143-7173")));
     }
 
@@ -78,7 +78,64 @@ class PortfolioSkeletonIntegrationTest {
                 .andExpect(model().attributeExists("contactInfo"))
                 .andExpect(model().attributeExists("profileSummary"))
                 .andExpect(content().string(org.hamcrest.Matchers.containsString("valentine9143@gmail.com")))
-                .andExpect(content().string(org.hamcrest.Matchers.containsString("비공개")));
+                .andExpect(content().string(org.hamcrest.Matchers.containsString("https://github.com/FrostyCityMan")));
+    }
+
+    @Test
+    @DisplayName("기본 레이아웃은 분리된 head, header, footer 정적 리소스를 로드해야 한다")
+    void layoutShouldLoadSeparatedFragmentAssets() throws Exception {
+        mockMvc.perform(get("/"))
+                .andExpect(status().isOk())
+                .andExpect(content().string(org.hamcrest.Matchers.containsString("/css/head.css")))
+                .andExpect(content().string(org.hamcrest.Matchers.containsString("/css/header.css")))
+                .andExpect(content().string(org.hamcrest.Matchers.containsString("/css/footer.css")))
+                .andExpect(content().string(org.hamcrest.Matchers.containsString("/js/head.js")))
+                .andExpect(content().string(org.hamcrest.Matchers.containsString("/js/header.js")))
+                .andExpect(content().string(org.hamcrest.Matchers.containsString("/js/footer.js")));
+    }
+
+    @Test
+    @DisplayName("공통 스타일시트는 주요 UI 호버 액션을 포함해야 한다")
+    void siteCssShouldExposeHoverInteractions() throws Exception {
+        mockMvc.perform(get("/css/site.css"))
+                .andExpect(status().isOk())
+                .andExpect(content().contentTypeCompatibleWith("text/css"))
+                .andExpect(content().string(org.hamcrest.Matchers.containsString(".summary-card:hover")))
+                .andExpect(content().string(org.hamcrest.Matchers.containsString(".info-card:hover")))
+                .andExpect(content().string(org.hamcrest.Matchers.containsString(".timeline-card:hover")))
+                .andExpect(content().string(org.hamcrest.Matchers.containsString(".button:hover")));
+    }
+
+    @Test
+    @DisplayName("분리된 fragment 전용 CSS와 JS는 각각 정적 리소스로 제공되어야 한다")
+    void separatedFragmentAssetsShouldBeServed() throws Exception {
+        mockMvc.perform(get("/css/head.css"))
+                .andExpect(status().isOk())
+                .andExpect(content().contentTypeCompatibleWith("text/css"))
+                .andExpect(content().string(org.hamcrest.Matchers.containsString(":root")));
+
+        mockMvc.perform(get("/css/header.css"))
+                .andExpect(status().isOk())
+                .andExpect(content().contentTypeCompatibleWith("text/css"))
+                .andExpect(content().string(org.hamcrest.Matchers.containsString(".site-header")))
+                .andExpect(content().string(org.hamcrest.Matchers.containsString(".brand:hover")));
+
+        mockMvc.perform(get("/css/footer.css"))
+                .andExpect(status().isOk())
+                .andExpect(content().contentTypeCompatibleWith("text/css"))
+                .andExpect(content().string(org.hamcrest.Matchers.containsString(".site-footer")));
+
+        mockMvc.perform(get("/js/head.js"))
+                .andExpect(status().isOk())
+                .andExpect(content().string(org.hamcrest.Matchers.containsString("js-enabled")));
+
+        mockMvc.perform(get("/js/header.js"))
+                .andExpect(status().isOk())
+                .andExpect(content().string(org.hamcrest.Matchers.containsString("aria-current")));
+
+        mockMvc.perform(get("/js/footer.js"))
+                .andExpect(status().isOk())
+                .andExpect(content().string(org.hamcrest.Matchers.containsString("footer-year")));
     }
 
     @Test

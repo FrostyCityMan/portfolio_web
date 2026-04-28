@@ -1,10 +1,18 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
-<head th:fragment="head(pageTitle)">
+<th:block th:fragment="meta(pageTitle)">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title th:text="${pageTitle} + ' | Portfolio Web'">Portfolio Web</title>
     <meta name="description" content="Spring Boot와 Thymeleaf 기반 포트폴리오 웹 프로젝트">
+</th:block>
+
+<th:block th:fragment="styles">
+    <link rel="stylesheet" th:href="@{/css/head.css}">
     <link rel="stylesheet" th:href="@{/css/site.css}">
-</head>
+</th:block>
+
+<th:block th:fragment="scripts">
+    <script th:src="@{/js/head.js}" defer></script>
+</th:block>
 </html>

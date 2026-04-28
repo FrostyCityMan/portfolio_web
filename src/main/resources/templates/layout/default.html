@@ -3,7 +3,12 @@
 <body>
 <th:block th:fragment="layout(pageTitle, activeMenu, content)">
     <html lang="ko">
-    <head th:replace="~{fragments/head :: head(${pageTitle})}"></head>
+    <head>
+        <th:block th:replace="~{fragments/head :: meta(${pageTitle})}"></th:block>
+        <th:block th:replace="~{fragments/head :: styles}"></th:block>
+        <th:block th:replace="~{fragments/header :: styles}"></th:block>
+        <th:block th:replace="~{fragments/footer :: styles}"></th:block>
+    </head>
     <body>
     <div class="site-wrapper">
         <header th:replace="~{fragments/header :: header(${activeMenu})}"></header>
@@ -12,7 +17,9 @@
         </main>
         <footer th:replace="~{fragments/footer :: footer}"></footer>
     </div>
-    <script th:src="@{/js/site.js}" defer></script>
+    <th:block th:replace="~{fragments/head :: scripts}"></th:block>
+    <th:block th:replace="~{fragments/header :: scripts}"></th:block>
+    <th:block th:replace="~{fragments/footer :: scripts}"></th:block>
     </body>
     </html>
 </th:block>
