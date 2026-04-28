@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{layout/default :: layout('메인', 'home', ~{::content})}">
+<th:block th:fragment="content">
+    <section class="hero-section">
+        <div class="container hero-grid">
+            <div class="hero-copy">
+                <p class="eyebrow">Backend Portfolio</p>
+                <p class="hero-name" th:text="${profileSummary.name()}">김도훈</p>
+                <h1 th:text="${profileSummary.headline()}">문제를 구조화하는 개발자</h1>
+                <p class="hero-description" th:text="${profileSummary.introduction()}">
+                    소개 문구
+                </p>
+                <div class="chip-list hero-chips">
+                    <span class="chip" th:each="tech : ${profileSummary.coreTechnologies()}" th:text="${tech}">Java</span>
+                </div>
+                <div class="hero-actions">
+                    <a class="button primary" th:href="@{/about}">자기소개 자세히 보기</a>
+                    <a class="button secondary" th:href="@{/projects}">대표 프로젝트 보기</a>
+                </div>
+            </div>
+            <div class="summary-card profile-spotlight">
+                <div class="profile-photo-shell">
+                    <img th:if="${profileSummary.profileImageUrl() != null}" th:src="${profileSummary.profileImageUrl()}" th:alt="${profileSummary.profileImageAlt()}">
+                    <div class="profile-photo-placeholder" th:unless="${profileSummary.profileImageUrl() != null}">
+                        <span>PHOTO</span>
+                        <p>프로필 사진을 넣을 공간</p>
+                    </div>
+                </div>
+                <h2>핵심 요약</h2>
+                <p th:text="${profileSummary.careerSummary()}">경력 요약</p>
+                <dl class="profile-quick-list">
+                    <div>
+                        <dt>연락처</dt>
+                        <dd th:text="${profileSummary.contactInfo().phone()}">010-0000-0000</dd>
+                    </div>
+                    <div>
+                        <dt>이메일</dt>
+                        <dd th:text="${profileSummary.contactInfo().email()}">mail@example.com</dd>
+                    </div>
+                    <div>
+                        <dt>GitHub</dt>
+                        <dd th:text="${profileSummary.contactInfo().githubLabel()}">비공개</dd>
+                    </div>
+                </dl>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-block">
+        <div class="container">
+            <div class="section-heading">
+                <p class="eyebrow">Core Capabilities</p>
+                <h2>핵심 역량</h2>
+            </div>
+            <div class="card-grid compact-grid">
+                <article class="info-card capability-card" th:each="highlight : ${profileSummary.strengthHighlights()}">
+                    <p th:text="${highlight}">역량</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-block alt-bg">
+        <div class="container">
+            <div class="section-heading">
+                <p class="eyebrow">Featured Work</p>
+                <h2>주요 프로젝트</h2>
+            </div>
+            <div class="card-grid">
+                <article class="info-card" th:each="project : ${featuredProjects}">
+                    <p class="eyebrow" th:text="${project.category()}">프로젝트 구분</p>
+                    <p class="meta" th:text="${project.period()}">기간</p>
+                    <h3 th:text="${project.name()}">프로젝트명</h3>
+                    <p th:text="${project.summary()}">개요</p>
+                    <p><strong>역할:</strong> <span th:text="${project.role()}">역할</span></p>
+                    <ul class="bullet-list compact-list">
+                        <li th:each="task, stat : ${project.responsibilities()}" th:if="${stat.index < 3}" th:text="${task}">주요 업무</li>
+                    </ul>
+                    <div class="chip-list small">
+                        <span class="chip" th:each="tech : ${project.techStacks()}" th:text="${tech}">Spring</span>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-block">
+        <div class="container two-column">
+            <div>
+                <div class="section-heading">
+                    <p class="eyebrow">Strengths</p>
+                    <h2>업무 강점</h2>
+                </div>
+                <article class="timeline-item" th:each="highlight : ${profileSummary.strengthHighlights()}">
+                    <p th:text="${highlight}">강점 설명</p>
+                </article>
+            </div>
+            <div class="cta-panel">
+                <p class="eyebrow">Growth Direction</p>
+                <h2>앞으로의 방향</h2>
+                <p th:text="${profileSummary.growthGoal()}">성장 방향</p>
+                <a class="button primary" th:href="@{/contact}">연락처 페이지로 이동</a>
+            </div>
+        </div>
+    </section>
+</th:block>
+</html>

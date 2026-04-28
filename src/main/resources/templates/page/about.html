@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{layout/default :: layout('소개', 'about', ~{::content})}">
+<th:block th:fragment="content">
+    <section class="page-hero compact">
+        <div class="container">
+            <p class="eyebrow">About Me</p>
+            <h1 th:text="${profileSummary.name()} + ' 소개'">소개</h1>
+            <p th:text="${profileSummary.introduction()}">소개 문구</p>
+        </div>
+    </section>
+
+    <section class="section-block">
+        <div class="container two-column">
+            <article class="info-card">
+                <h2>개발 방향</h2>
+                <p th:text="${profileSummary.careerSummary()}">요약</p>
+            </article>
+            <article class="info-card profile-photo-card">
+                <h2>프로필 사진</h2>
+                <div class="profile-photo-shell large">
+                    <img th:if="${profileSummary.profileImageUrl() != null}" th:src="${profileSummary.profileImageUrl()}" th:alt="${profileSummary.profileImageAlt()}">
+                    <div class="profile-photo-placeholder" th:unless="${profileSummary.profileImageUrl() != null}">
+                        <span>PHOTO</span>
+                        <p>추후 프로필 사진을 등록할 수 있도록 공간을 마련했습니다.</p>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <section class="section-block alt-bg">
+        <div class="container">
+            <div class="section-heading">
+                <p class="eyebrow">Introduction</p>
+                <h2>자기소개</h2>
+            </div>
+            <div class="story-grid">
+                <article class="info-card story-card" th:each="detail : ${profileSummary.introductionDetails()}">
+                    <p th:text="${detail}">상세 소개</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-block">
+        <div class="container two-column">
+            <article class="info-card">
+                <h2>업무 강점</h2>
+                <ul class="bullet-list">
+                    <li th:each="highlight : ${profileSummary.strengthHighlights()}" th:text="${highlight}">강점</li>
+                </ul>
+            </article>
+            <article class="info-card">
+                <h2>성장 목표</h2>
+                <p th:text="${profileSummary.growthGoal()}">성장 목표</p>
+            </article>
+        </div>
+    </section>
+
+    <section class="section-block alt-bg">
+        <div class="container">
+            <div class="section-heading">
+                <p class="eyebrow">Technology Stack</p>
+                <h2>기술 스택</h2>
+            </div>
+            <div class="stack-grid">
+                <article class="info-card stack-card" th:each="stackGroup : ${profileSummary.techStackGroups()}">
+                    <h3 th:text="${stackGroup.category()}">Backend</h3>
+                    <ul class="bullet-list compact-list">
+                        <li th:each="item : ${stackGroup.items()}" th:text="${item}">Java</li>
+                    </ul>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-block">
+        <div class="container two-column">
+            <article class="info-card">
+                <h2>기타 경력</h2>
+                <ul class="bullet-list">
+                    <li th:each="career : ${profileSummary.additionalCareerNotes()}" th:text="${career}">기타 경력</li>
+                </ul>
+            </article>
+            <article class="info-card">
+                <h2>학력</h2>
+                <p th:text="${profileSummary.education()}">학력</p>
+            </article>
+        </div>
+    </section>
+</th:block>
+</html>

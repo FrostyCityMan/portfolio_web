@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<body>
+<header th:fragment="header(activeMenu)" class="site-header">
+    <div class="container nav-container">
+        <a class="brand" th:href="@{/}">Portfolio Web</a>
+        <nav class="main-nav" aria-label="주요 메뉴">
+            <a th:href="@{/}"
+               th:classappend="${activeMenu == 'home'} ? ' is-active'"
+            >Home</a>
+            <a th:href="@{/about}"
+               th:classappend="${activeMenu == 'about'} ? ' is-active'"
+            >About</a>
+            <a th:href="@{/projects}"
+               th:classappend="${activeMenu == 'projects'} ? ' is-active'"
+            >Projects</a>
+            <a th:href="@{/experience}"
+               th:classappend="${activeMenu == 'experience'} ? ' is-active'"
+            >Experience</a>
+            <a th:href="@{/contact}"
+               th:classappend="${activeMenu == 'contact'} ? ' is-active'"
+            >Contact</a>
+        </nav>
+    </div>
+</header>
+</body>
+</html>

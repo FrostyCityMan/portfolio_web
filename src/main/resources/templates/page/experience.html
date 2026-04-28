@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{layout/default :: layout('경력', 'experience', ~{::content})}">
+<th:block th:fragment="content">
+    <section class="page-hero compact">
+        <div class="container">
+            <p class="eyebrow">Experience</p>
+            <h1>IT 경력</h1>
+            <p>공공 및 기업 프로젝트에서 수행한 백엔드 개발, 데이터 처리, 인프라 운영 경험을 프로젝트 단위로 정리했습니다.</p>
+        </div>
+    </section>
+
+    <section class="section-block">
+        <div class="container timeline-list">
+            <article class="timeline-card" th:each="experience : ${experiences}">
+                <p class="meta" th:text="${experience.period()}">기간</p>
+                <h2 th:text="${experience.companyName()} + ' · ' + ${experience.position()}">회사명</h2>
+                <p class="sub-title" th:text="${experience.projectName()}">프로젝트명</p>
+                <p th:text="${experience.summary()}">경력 요약</p>
+                <ul class="bullet-list compact-list">
+                    <li th:each="task : ${experience.responsibilities()}" th:text="${task}">주요 업무</li>
+                </ul>
+                <div class="chip-list small">
+                    <span class="chip" th:each="tech : ${experience.techStacks()}" th:text="${tech}">기술</span>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <section class="section-block alt-bg">
+        <div class="container two-column">
+            <article class="info-card">
+                <h2>기타 경력</h2>
+                <ul class="bullet-list">
+                    <li th:each="career : ${profileSummary.additionalCareerNotes()}" th:text="${career}">기타 경력</li>
+                </ul>
+            </article>
+            <article class="info-card">
+                <h2>학력</h2>
+                <p th:text="${profileSummary.education()}">학력</p>
+            </article>
+        </div>
+    </section>
+</th:block>
+</html>

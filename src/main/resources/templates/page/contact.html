@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{layout/default :: layout('연락처', 'contact', ~{::content})}">
+<th:block th:fragment="content">
+    <section class="page-hero compact">
+        <div class="container">
+            <p class="eyebrow">Contact</p>
+            <h1 th:text="${profileSummary.name()} + ' 연락처'">연락처 페이지</h1>
+            <p>백엔드 개발, 인프라 운영, 프로젝트 협업과 관련한 제안은 아래 연락처로 편하게 전달해 주세요.</p>
+        </div>
+    </section>
+
+    <section class="section-block">
+        <div class="container two-column">
+            <article class="info-card">
+                <h2>프로필</h2>
+                <div class="profile-photo-shell medium">
+                    <img th:if="${profileSummary.profileImageUrl() != null}" th:src="${profileSummary.profileImageUrl()}" th:alt="${profileSummary.profileImageAlt()}">
+                    <div class="profile-photo-placeholder" th:unless="${profileSummary.profileImageUrl() != null}">
+                        <span>PHOTO</span>
+                        <p>프로필 사진 등록 예정 영역</p>
+                    </div>
+                </div>
+                <p class="sub-title" th:text="${profileSummary.headline()}">직함</p>
+                <p th:text="${profileSummary.careerSummary()}">요약</p>
+            </article>
+            <article class="info-card">
+                <h2>연락 정보</h2>
+                <p><strong>연락처:</strong> <span th:text="${contactInfo.phone()}">010-0000-0000</span></p>
+                <p><strong>이메일:</strong> <a th:href="'mailto:' + ${contactInfo.email()}" th:text="${contactInfo.email()}">email</a></p>
+                <p th:if="${contactInfo.githubUrl() != null}"><strong>GitHub:</strong> <a th:href="${contactInfo.githubUrl()}" th:text="${contactInfo.githubLabel()}" target="_blank" rel="noopener">github</a></p>
+                <p th:unless="${contactInfo.githubUrl() != null}"><strong>GitHub:</strong> <span th:text="${contactInfo.githubLabel()}">비공개</span></p>
+                <h2>메시지</h2>
+                <p th:text="${contactInfo.message()}">메시지</p>
+                <div class="placeholder-box">
+                    <p>협업 포인트</p>
+                    <ul>
+                        <li>Spring Boot 기반 백엔드 개발</li>
+                        <li>AWS / Docker / Linux 운영 환경 구성</li>
+                        <li>인증·권한, 배포 자동화, 운영 안정화 협업</li>
+                    </ul>
+                </div>
+            </article>
+        </div>
+    </section>
+</th:block>
+</html>
