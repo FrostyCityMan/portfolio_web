@@ -30,7 +30,7 @@ public class DummyProfileRepository implements ProfileRepository {
                         "Oracle / PostgreSQL 기반 데이터 처리 및 업무 로직 구현",
                         "AWS / Linux / Docker / Tomcat 기반 인프라 구축 및 운영",
                         "OAuth2 / OIDC 기반 인증 및 권한 구조 설계",
-                        "GitLab / CI/CD / 배포 자동화 운영 경험",
+                        "GitHub /GitLab / CI/CD / 배포 자동화 운영 경험",
                         "Swagger / OpenAPI 기반 API 문서화",
                         "운영 로그 분석 및 장애 원인 추적",
                         "개발 생산성 향상을 위한 도구 및 플러그인 개발"
