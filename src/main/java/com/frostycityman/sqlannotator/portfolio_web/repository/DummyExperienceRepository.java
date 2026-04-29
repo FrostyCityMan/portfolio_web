@@ -49,7 +49,7 @@ public class DummyExperienceRepository implements ExperienceRepository {
                 ),
                 new ExperienceDto(
                         "주식회사 케어비즈",
-                        "정규직 / 과장",
+                        "정규직 / 주임",
                         "2023.01 ~ 2025.04",
                         "부산도시공사 임대주택전자청약시스템 유지보수",
                         "통합공공임대 인트라넷 및 포털 시스템 유지보수를 수행했습니다.",
@@ -64,7 +64,7 @@ public class DummyExperienceRepository implements ExperienceRepository {
                 ),
                 new ExperienceDto(
                         "주식회사 케어비즈",
-                        "정규직 / 과장",
+                        "정규직 / 주임",
                         "2023.01 ~ 2025.04",
                         "서울도시공사 임대주택전자청약시스템 구축",
                         "계약업무 인트라넷 시스템 구축 프로젝트를 수행했습니다.",
@@ -78,7 +78,7 @@ public class DummyExperienceRepository implements ExperienceRepository {
                 ),
                 new ExperienceDto(
                         "주식회사 케어비즈",
-                        "정규직 / 과장",
+                        "정규직 / 주임",
                         "2023.01 ~ 2025.04",
                         "부산도시공사 임대주택전자청약시스템 구축",
                         "매입임대 인트라넷 및 포털 사이트 구축 프로젝트를 수행했습니다.",
