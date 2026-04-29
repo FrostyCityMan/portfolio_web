@@ -2,7 +2,10 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <footer th:fragment="footer" class="site-footer">
     <div class="container footer-content">
-        <p>© <span class="footer-year">2026</span> Valentine Portfolio</p>
+        <p class="footer-brand">
+            <img class="footer-brand-icon" th:src="@{/image/webIcon.png}" alt="Portfolio Web 아이콘">
+            <span>© <span class="footer-year">2026</span> Valentine Portfolio</span>
+        </p>
         <p>Spring Boot 기반 엔터프라이즈 백엔드 개발과 AWS·Linux 기반 인프라 운영을 함께 수행해온 엔지니어입니다.
             공공 및 기업 프로젝트에서 Java/Spring Boot, Oracle/PostgreSQL 기반 업무 시스템 개발, 인증 및 권한 구조 설계, API 문서화, Docker 및 GitLab 기반 운영 환경 구성 경험을 보유하고 있습니다.
             폐쇄망 및 운영 제약 환경에서 서버 구성, Oracle 컨테이너 운영, 배포 자동화, 인증 연동, 운영 이슈 대응까지 수행하며 백엔드와 인프라를 통합적으로 다뤄왔습니다.

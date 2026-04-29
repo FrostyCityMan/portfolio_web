@@ -16,9 +16,19 @@
 }
 
 .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
     font-weight: 700;
     letter-spacing: 0.04em;
     transition: color 0.2s ease, text-shadow 0.2s ease;
+}
+
+.brand-icon {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+    filter: drop-shadow(0 0 12px rgba(56, 189, 248, 0.28));
 }
 
 .brand:hover,

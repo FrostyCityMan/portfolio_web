@@ -2,7 +2,10 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <header th:fragment="header(activeMenu)" class="site-header">
     <div class="container nav-container">
-        <a class="brand" th:href="@{/}">Portfolio Web</a>
+        <a class="brand" th:href="@{/}">
+            <img class="brand-icon" th:src="@{/image/webIcon.png}" alt="Portfolio Web 아이콘">
+            <span>Portfolio Web</span>
+        </a>
         <nav class="main-nav" aria-label="주요 메뉴">
             <a th:href="@{/}"
                th:classappend="${activeMenu == 'home'} ? ' is-active'"
