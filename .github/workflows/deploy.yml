@@ -13,7 +13,7 @@ env:
   AWS_REGION: ap-northeast-2
   S3_BUCKET: portfolio-web-codedeploy-375268683130
   CODEDEPLOY_APPLICATION: portfolio-web
-  CODEDEPLOY_GROUP: portfolio-web-group
+  CODEDEPLOY_GROUP: portfolio-web
 
 jobs:
   deploy:
