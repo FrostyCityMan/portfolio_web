@@ -1,0 +1,63 @@
+name: Deploy Portfolio Web
+
+on:
+  push:
+    branches:
+      - master
+
+permissions:
+  id-token: write
+  contents: read
+
+env:
+  AWS_REGION: ap-northeast-2
+  S3_BUCKET: portfolio-web-codedeploy-375268683130
+  CODEDEPLOY_APPLICATION: portfolio-web
+  CODEDEPLOY_GROUP: portfolio-web-group
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - name: Grant execute permission for Gradle
+        run: chmod +x ./gradlew
+
+      - name: Build Spring Boot jar
+        run: ./gradlew clean bootJar -x test
+
+      - name: Prepare deployment package
+        run: |
+          mkdir -p package
+          cp build/libs/*.jar package/app.jar
+          cp deploy/appspec.yml package/appspec.yml
+          cp -r deploy/scripts package/scripts
+          chmod +x package/scripts/*.sh
+          cd package
+          zip -r ../deployment.zip .
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::375268683130:role/github-actions-codedeploy-role
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Upload package to S3
+        run: |
+          aws s3 cp deployment.zip s3://${{ env.S3_BUCKET }}/portfolio-web/deployment-${{ github.sha }}.zip
+
+      - name: Create CodeDeploy deployment
+        run: |
+          aws deploy create-deployment \
+            --application-name ${{ env.CODEDEPLOY_APPLICATION }} \
+            --deployment-group-name ${{ env.CODEDEPLOY_GROUP }} \
+            --s3-location bucket=${{ env.S3_BUCKET }},key=portfolio-web/deployment-${{ github.sha }}.zip,bundleType=zip
