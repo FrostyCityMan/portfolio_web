@@ -19,7 +19,7 @@ spring:
   mvc:
     problemdetails:
       enabled: false
-
+---
 springdoc:
   api-docs:
     path: /v3/api-docs
