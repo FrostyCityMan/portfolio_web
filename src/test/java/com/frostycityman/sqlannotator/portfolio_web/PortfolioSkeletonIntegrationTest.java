@@ -53,6 +53,8 @@ class PortfolioSkeletonIntegrationTest {
                 .andExpect(status().isOk())
                 .andExpect(view().name("page/projects"))
                 .andExpect(model().attributeExists("projects"))
+                .andExpect(content().string(org.hamcrest.Matchers.containsString("Portfolio Web AWS 기반 CI/CD 자동 배포 시스템 구축")))
+                .andExpect(content().string(org.hamcrest.Matchers.containsString("GitHub Actions")))
                 .andExpect(content().string(org.hamcrest.Matchers.containsString("Hybe Casting Map / Web 프로젝트")))
                 .andExpect(content().string(org.hamcrest.Matchers.containsString("Google Maps JavaScript API 및 Places API 연동 기능 개발")));
     }

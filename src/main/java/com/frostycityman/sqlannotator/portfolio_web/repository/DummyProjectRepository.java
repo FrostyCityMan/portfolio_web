@@ -12,6 +12,27 @@ public class DummyProjectRepository implements ProjectRepository {
     public List<ProjectDto> findAll() {
         return List.of(
                 new ProjectDto(
+                        "Portfolio Web AWS 기반 CI/CD 자동 배포 시스템 구축",
+                        "개인 프로젝트 · DevOps / 배포 자동화",
+                        "2026.04",
+                        "GitHub Actions, AWS OIDC, S3, CodeDeploy를 연계해 Spring Boot 포트폴리오 웹 애플리케이션을 EC2에 자동 배포하는 CI/CD 파이프라인을 구축한 프로젝트입니다.",
+                        "배포 파이프라인 설계 및 운영 자동화",
+                        List.of(
+                                "GitHub Push 이벤트를 기준으로 Gradle 빌드부터 배포까지 이어지는 GitHub Actions 워크플로 구성",
+                                "AWS OIDC 기반 AssumeRole 인증 구조를 적용해 Access Key 없는 배포 환경 설계",
+                                "배포 패키지(zip) 생성 후 S3 업로드 및 CodeDeploy 배포 트리거 자동화",
+                                "appspec.yml 및 start/stop/validate 스크립트를 구성해 EC2 배포 절차 표준화",
+                                "Java 미설치, 파일 권한, OIDC Trust Policy, CodeDeploy 설정, 보안 그룹 이슈를 분석하고 배포 실패 원인 해결"
+                        ),
+                        List.of("Java", "Spring Boot", "GitHub Actions", "AWS OIDC", "S3", "CodeDeploy", "EC2", "Ubuntu", "CI/CD"),
+                        List.of(
+                                "수동 배포를 제거하고 Push 기반 자동 배포 흐름을 직접 설계·구축한 경험",
+                                "OIDC 기반 인증 구조로 보안을 강화하며 AWS 배포 파이프라인을 운영한 경험",
+                                "배포 실패 원인을 단계별로 추적하며 인프라·배포·운영 문제를 종합적으로 해결한 경험"
+                        ),
+                        false
+                ),
+                new ProjectDto(
                         "Hybe Casting Map / Web 프로젝트",
                         "개인 외주 프로젝트",
                         "2026.02 ~ 2026.04",
